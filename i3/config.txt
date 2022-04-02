@@ -1,0 +1,128 @@
+# HECS i3
+
+# Constants
+  set $mod Mod1
+
+  set $base00 #e9e9e9
+  set $base01 #262626
+  set $base02 #151515
+  set $base03 #fc333e
+  set $base04 #320001
+  set $base05 #00ff00
+
+  set $workspace1 = "1:"
+  set $workspace2 = "2:"
+  set $workspace3 = "3:"
+  set $workspace4 = "4:"
+  set $workspace5 = "5:"
+  set $workspace6 = "6:"
+  set $workspace7 = "7:"
+  set $workspace8 = "8:"
+  set $workspace9 = "9:"
+  set $workspace10 = "10:"
+
+
+# General
+  font pango:SF-Pro-Text 8
+  floating_modifier $mod
+# new_window 1pixel
+
+
+# Login Items
+  exec_always --no-startup-id "xrandr -s 1920x1080"
+  exec_always --no-startup-id "xcompmgr"
+  exec_always --no-startup-id "setxkbmap de"
+  exec_always --no-startup-id "localectl set-locale LANG=en_US.UTF-8"
+  exec_always feh --bg-scale /home/linux/wallpaper/HECS.png
+# exec_always hsetroot -solid "#008080"
+
+
+# Binds - Windows
+  bindsym $mod+q kill
+# bindsym $mod+Ctrl+Left focus left
+# bindsym $mod+Ctrl+Down focus down
+# bindsym $mod+Ctrl+Up focus up
+# bindsym $mod+Ctrl+Right focus right
+
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
+
+  bindsym $mod+w floating toggle
+# bindsym $mod+Shift+t focus mode_toggle
+# bindsym $mod+Shift+f fullscreen toggle
+
+  bindsym $mod+x split v
+  bindsym $mod+y split h
+
+  set $resizestep 10 px or 2 ppt
+  bindsym $mod+Up resize grow height $resizestep
+  bindsym $mod+Left resize grow width $resizestep
+  bindsym $mod+Down resize shrink height $resizestep
+  bindsym $mod+Right resize shrink width $resizestep
+
+
+# Binds - i3
+  bindsym $mod+Shift+r restart
+  bindsym $mod+Shift+c reload
+  bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"
+
+
+# Binds - Apps
+  bindsym $mod+Return exec xfce4-terminal
+  bindsym $mod+space exec rofi -show drun -show-icons -font "SF Mono 12" -theme /home/linux/.config/rofi/Spotlight_Dark.rasi
+  bindsym $mod+f exec firefox-esr
+  bindsym $mod+n exec pcmanfm
+
+
+# Binds - Spaces
+  bindsym $mod+1 workspace 1
+  bindsym $mod+2 workspace 2
+  bindsym $mod+3 workspace 3
+  bindsym $mod+4 workspace 4
+  bindsym $mod+5 workspace 5
+  bindsym $mod+6 workspace 6
+  bindsym $mod+7 workspace 7
+  bindsym $mod+8 workspace 8
+  bindsym $mod+9 workspace 9
+  bindsym $mod+0 workspace 10
+
+  bindsym $mod+Shift+1 move container to workspace $workspace1
+  bindsym $mod+Shift+2 move container to workspace $workspace2
+  bindsym $mod+Shift+3 move container to workspace $workspace3
+  bindsym $mod+Shift+4 move container to workspace $workspace4
+  bindsym $mod+Shift+5 move container to workspace $workspace5
+  bindsym $mod+Shift+6 move container to workspace $workspace6
+  bindsym $mod+Shift+7 move container to workspace $workspace7
+  bindsym $mod+Shift+8 move container to workspace $workspace8
+  bindsym $mod+Shift+9 move container to workspace $workspace9
+  bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# Assign Windows to Spaces
+# assign [class="pcmanfm"] $workspace1
+# assign [class="firefox-esr"] $workspace3
+
+# Floating Windows
+# for_window [class="xfce4-terminal"] resize set 600 300
+# for_window [class="firefox-esr"] floating enable, resize set 1366 768
+
+
+# Gaps
+# gaps inner 20
+# gaps outer 0
+
+
+# Theme
+# Disable window titlebars entirely
+# for_window [class="^.*"] border pixel 0
+
+  default_border normal
+  default_floating_border normal
+  hide_edge_borders both
+
+# Window Colours - border, background, text, indicator
+  client.focused $base01 $base01 $base00 $base05
+  client.focused_inactive $base02 $base02 $base00 $base05
+  client.unfocused $base02 $base02 $base00 $base05
+  client.urgent $base03 $base04 $base00 $base05
